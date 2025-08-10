@@ -2,10 +2,12 @@ import OnBoarding from "@/components/joinUs/onBoarding/OnBoarding";
 import JoinUsLayout from "@/layouts/JoinUsLayout";
 import JoinUs from "@/components/joinUs/JoinUs";
 import Roles from "@/components/joinUs/roles/Roles";
-
+import VideoTop from "@/components/joinUs/navBarTop/videoTop";
+import VideoBottom from "@/components/joinUs/footerBottom/videoBottom";
 const page = () => {
   return (
     <JoinUsLayout>
+      <VideoTop />
       <JoinUs />
       <OnBoarding />
       <section className="py-8">
@@ -15,6 +17,7 @@ const page = () => {
 
         <Roles />
       </section>
+      <VideoBottom />
     </JoinUsLayout>
   );
 };
