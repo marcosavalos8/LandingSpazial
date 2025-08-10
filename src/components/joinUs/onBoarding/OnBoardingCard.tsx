@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import OnBoardingButton from "./OnBoardingButton";
+import SharedButton from "@/components/shared/SharedButton";
 
 const getImageGridClasses = (count: number): string => {
   switch (count) {
@@ -69,11 +69,7 @@ const OnBoardingCard = ({
             {paragraph3}
           </p>
         )}
-        <OnBoardingButton
-          text={buttonText}
-          href={buttonLink}
-          className="mt-6"
-        />
+        <SharedButton text={buttonText} href={buttonLink} className="mt-6" />
       </div>
 
       <div className="w-full lg:w-1/2">

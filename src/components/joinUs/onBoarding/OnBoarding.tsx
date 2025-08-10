@@ -33,8 +33,10 @@ const internshipsData = {
 
 const OnBoarding = () => {
   return (
-    <div>
-      <h1 className=" text-left font-bold text-3xl mb-6">Onboarding Process</h1>
+    <div className="py-8">
+      <h1 className="text-left font-bold text-[40px] mb-6 dark:text-white text-[#2C2A2A]">
+        Onboarding Process
+      </h1>
       <div className="mx-auto flex flex-col gap-24 mb-8">
         {/* Professionals */}
         <OnBoardingCard
