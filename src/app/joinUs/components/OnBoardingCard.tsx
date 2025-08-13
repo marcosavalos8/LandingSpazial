@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import SharedButton from "@/components/shared/SharedButton";
+import SharedButton from "@/app/joinUs/components/SharedButton";
 
 const getImageGridClasses = (count: number): string => {
   switch (count) {

@@ -1,41 +1,36 @@
 "use client";
-import { motion } from "framer-motion";
-import SharedButton from "../shared/SharedButton";
+import { motion, Variants, easeOut } from "framer-motion";
+import { useState, useEffect } from "react";
+import SharedButton from "./SharedButton";
 
 const generateDistributedRandomColors = () => {
   const colors = [];
   const hueStep = 360 / 9;
-
   for (let i = 0; i < 9; i++) {
     const hue = Math.floor(i * hueStep + Math.random() * hueStep);
     colors.push(`hsl(${hue}, 70%, 70%)`);
   }
-
   for (let i = colors.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [colors[i], colors[j]] = [colors[j], colors[i]];
   }
-
   return colors;
 };
 
 const randomColorsLeft = generateDistributedRandomColors();
 const randomColorsRight = generateDistributedRandomColors();
 
-// Acomodo por filas
 const rows = [[0], [1, 2], [3, 4], [5], [6, 7], [8]];
 
-// Variants para la animación
-const blockVariants = {
+const blockVariants: Variants = {
   hidden: { opacity: 0, y: -30 },
   visible: (custom: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: custom * 0.1, type: "spring", stiffness: 120 },
+    transition: { delay: custom * 0.8, duration: 0.8, ease: easeOut },
   }),
 };
 
-// Función para el ancho de cada bloque
 const getWidth = (row: number[], indexInRow: number) => {
   if (row.length === 1) {
     if (indexInRow === 0 && row[0] === 0) return "141px";
@@ -46,9 +41,26 @@ const getWidth = (row: number[], indexInRow: number) => {
 };
 
 export default function JoinUs() {
+  const [cycleKey, setCycleKey] = useState(0);
+  const [randomColorsLeft, setRandomColorsLeft] = useState<string[]>([]);
+  const [randomColorsRight, setRandomColorsRight] = useState<string[]>([]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCycleKey((prev) => prev + 1); // 🔄 Reinicia animación
+    }, 5000); // tiempo total de ciclo (ajustar si la animación dura más)
+    return () => clearInterval(interval);
+  }, []);
+  useEffect(() => {
+    setRandomColorsLeft(generateDistributedRandomColors());
+    setRandomColorsRight(generateDistributedRandomColors());
+  }, []);
   return (
     <section className="w-full py-10 flex flex-col items-center">
-      <div className="flex w-full items-center justify-between gap-8">
+      <div
+        className="flex w-full items-center justify-between gap-8"
+        key={cycleKey}
+      >
         {/* Columna izquierda */}
         <div className="hidden md:flex flex-col justify-center gap-4 items-start">
           {rows.map((row, rowIndex) => (
@@ -69,8 +81,7 @@ export default function JoinUs() {
                   }}
                   variants={blockVariants}
                   initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
+                  animate="visible"
                   custom={rowIndex + i}
                 />
               ))}
@@ -78,7 +89,7 @@ export default function JoinUs() {
           ))}
         </div>
 
-        {/*  Texto central */}
+        {/* Texto central */}
         <div className="flex flex-col items-center justify-center text-center px-4 max-w-xl">
           <h2 className="text-5xl font-bold text-[#2C2A2A] dark:text-slate-200">
             Join Us
@@ -111,8 +122,7 @@ export default function JoinUs() {
                   }}
                   variants={blockVariants}
                   initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
+                  animate="visible"
                   custom={rowIndex + i}
                 />
               ))}

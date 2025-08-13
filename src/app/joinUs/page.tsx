@@ -1,12 +1,12 @@
-import OnBoarding from "@/components/joinUs/onBoarding/OnBoarding";
+import OnBoarding from "@/app/joinUs/components/OnBoarding";
 import JoinUsLayout from "@/layouts/JoinUsLayout";
-import JoinUs from "@/components/joinUs/JoinUs";
-import Roles from "@/components/joinUs/roles/Roles";
-import VideoTop from "@/components/joinUs/navBarTop/videoTop";
-import VideoBottom from "@/components/joinUs/footerBottom/videoBottom";
+import JoinUs from "@/app/joinUs/components/JoinUs";
+import Roles from "@/app/joinUs/components/Roles";
+import VideoTop from "@/app/joinUs/components/videoTop";
+import VideoBottom from "@/app/joinUs/components/videoBottom";
 const page = () => {
   return (
-    <JoinUsLayout>
+    <main className="w-full px-4 md:px-8 mt-4">
       <VideoTop />
       <JoinUs />
       <OnBoarding />
@@ -14,11 +14,10 @@ const page = () => {
         <h1 className="text-left font-bold text-[40px] mb-6 dark:text-white text-[#2C2A2A]">
           Roles in our company
         </h1>
-
         <Roles />
       </section>
-      <VideoBottom />
-    </JoinUsLayout>
+      <VideoBottom id="video-bottom" />
+    </main>
   );
 };
 

@@ -6,7 +6,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [active, setActive] = useState(false);
   return (
-    <header className=" shadow-md sticky top-0 z-50">
+    <header className=" shadow-md top-0 z-50">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
         <div className="text-xl font-bold">Spazial</div>
 

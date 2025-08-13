@@ -25,7 +25,7 @@ const SharedButton = ({
 
   return (
     <a
-      href={href}
+      /*  href={href} */
       className={`
         inline-flex items-center justify-center gap-2
         px-6 py-3 font-medium
@@ -42,6 +42,12 @@ const SharedButton = ({
         (e.currentTarget.style.backgroundColor = `${hover}E6`)
       }
       onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = bg)}
+      onClick={() => {
+        const element = document.getElementById("video-bottom");
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }}
     >
       {text}
       <BsArrowUpRightCircleFill />

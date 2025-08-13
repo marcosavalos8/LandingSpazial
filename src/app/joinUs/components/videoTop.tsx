@@ -24,7 +24,15 @@ const VideoTop = () => {
             And Its Application <span className="font-bold">In Spazial</span>
           </h2>
 
-          <button className="px-12 py-3 border-2 border-white rounded-lg hover:bg-white hover:text-pink-500 transition">
+          <button
+            onClick={() => {
+              const element = document.getElementById("video-bottom");
+              if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
+            className="px-12 py-3 border-2 border-white rounded-lg hover:bg-white hover:text-pink-500 transition"
+          >
             Apply now
           </button>
         </div>
